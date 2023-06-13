@@ -31,8 +31,8 @@ export const registerValidator = validate(
       trim: true,
       custom: {
         options: async (value) => {
-          const isExistEmail = await userService.checkEmailExist(value);
-          if(isExistEmail){
+          const isExistEmail = await userService.checkEmailExist(value)
+          if (isExistEmail) {
             throw new Error('Email already exists')
           }
           return true
@@ -78,7 +78,7 @@ export const registerValidator = validate(
       },
       custom: {
         options: (value, { req }) => {
-          if(value !== req.body.password) {
+          if (value !== req.body.password) {
             throw new Error('Password confirmation does not match password')
           }
           return true
