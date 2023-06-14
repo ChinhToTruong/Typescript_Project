@@ -1,7 +1,6 @@
 import { ObjectId } from 'mongodb'
 import { UserVerifyStatus } from '~/constants/enum'
 
-
 interface Media {
   url: string
   type: MediaType // video or image
