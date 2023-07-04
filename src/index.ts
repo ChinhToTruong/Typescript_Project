@@ -8,7 +8,7 @@ const port = 3000
 app.use(express.json())
 app.use('/users', usersRouter)
 databaseService.connect()
-app.use((err, req,res, next) => {
+app.use((err: any, req: any,res: any, next: any) => {
   console.log('Loi la', err.message);
   res.status(400).json({error: err.message});
 })
