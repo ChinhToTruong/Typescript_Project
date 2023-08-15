@@ -9,10 +9,11 @@ export const validate = (validation: RunnableValidationChains<ValidationChain>) 
     await validation.run(req)
 
     const errors = validationResult(req)
+    const errorsObject = errors.mapped()
     if (errors.isEmpty()) {
       return next()
     }
 
-    res.status(400).json({ errors: errors.mapped() })
+    res.status(422).json({ errors: errorsObject })
   }
 }
