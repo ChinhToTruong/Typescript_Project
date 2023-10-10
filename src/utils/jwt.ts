@@ -6,7 +6,7 @@ export const signToken = ({
   options = {
     algorithm: 'HS256'
   }
-}: {
+  }: {
   payload: string | Buffer | object
   privateKey?: string
   options?: jwt.SignOptions
