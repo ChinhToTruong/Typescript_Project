@@ -4,24 +4,34 @@ import databaseService from '~/services/database.services'
 import userService from '~/services/user.services'
 import { ParamsDictionary } from 'express-serve-static-core'
 import { RegisterReqBody } from '~/models/requests/User.requests'
+import { ObjectId } from 'mongodb'
+import { USER_MESSAGE } from '~/constants/messages'
 
-export const loginController = (req: Request, res: Response) => {
-  const { email, password } = req.body
-  if (email === 'totruongchinh@gmail.com' && password === '123') {
-    return res.json({
-      message: 'Login successful'
-    })
-  }
-
-  return res.status(400).json({
-    message: 'Login failed'
+export const loginController = async (req: Request, res: Response) => {
+  const user = req.user as User
+  const user_id = user._id as ObjectId
+  const result = await userService.login(user_id.toString())
+  return res.json({
+    message: USER_MESSAGE.LOGIN_SUCCESS,
+    result
   })
 }
 
 export const registerController = async (req: Request<ParamsDictionary, any, RegisterReqBody>, res: Response, next: NextFunction) => {
   const result = await userService.register(req.body)
   return res.json({
-      message: 'Register successfully',
+      message: USER_MESSAGE.REGISTER_SUCCESS,
       result
     })
+}
+
+
+
+export const logoutController = async (req: Request, res: Response) => {
+  console.log(req.body)
+  const result = await userService.logout(req.body)
+  return res.json({
+    message: USER_MESSAGE.LOGOUT_SUCCESS_SUCCESS,
+    result
+  })
 }
