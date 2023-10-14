@@ -7,5 +7,5 @@ export function sha256(content: string) {
 }
 
 export function hashPassword(password: string) {
-  return sha256(password + process.env.PASSSWORD_SECRET)
+  return sha256(password + process.env.PASSWORD_SECRET)
 }

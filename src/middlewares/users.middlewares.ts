@@ -193,11 +193,10 @@ export const refreshTokenValidator = validate(
       custom: {
         options:async (value: string, {req}) => {
           try {
-            const[decode_refresh_token, refresh_token] = await Promise.all([
+            const [decode_refresh_token, refresh_token] = await Promise.all([
               verifyToken({token: value}),
               databaseService.refreshToken.findOne({token: value})
             ])
-            console.log(refresh_token);
             if (refresh_token === null){
               throw new ErrorWithStatus({
                 message: USER_MESSAGE.REFRESH_TOKEN_IS_NOT_EXIT,

@@ -30,7 +30,7 @@ export const signToken = ({
 export const verifyToken = (
   {token, secretOrPublicKey = process.env.JWT_SECRET as string} : 
   {token: string, secretOrPublicKey?:string}) => {
-
+    console.log(token)
     return new Promise<jwt.JwtPayload>((resolve, reject) => {
       jwt.verify(token, secretOrPublicKey, (error, decode) =>{
         if (error){

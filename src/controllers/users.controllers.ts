@@ -28,7 +28,6 @@ export const registerController = async (req: Request<ParamsDictionary, any, Reg
 
 
 export const logoutController = async (req: Request, res: Response) => {
-  console.log(req.body)
   const result = await userService.logout(req.body)
   return res.json({
     message: USER_MESSAGE.LOGOUT_SUCCESS_SUCCESS,
