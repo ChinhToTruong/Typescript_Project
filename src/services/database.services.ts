@@ -32,7 +32,7 @@ class DatabaseService {
     return this.db.collection(process.env.DB_USER_COLLECTION as string)
   }
 
-  get refreshToken(): Collection<RefreshToken>{
+  get refreshToken(): Collection<RefreshToken> {
     return this.db.collection(process.env.DB_REFRESH_TOKENS_COLLECTION as string)
   }
 }
